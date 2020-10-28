@@ -1,0 +1,32 @@
+name: 1.0$(rev:.r)
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - hertz/skw
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    sourceFolder: hertz/skw/washer
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: kasunkodagoda.regex-match-replace.regex-match-replace.RegExMatchReplace@2
+  displayName: 'RegEx Match & Replace package version'
+  inputs:
+    PathToFile: '$(Build.ArtifactStagingDirectory)/hertzconfig.nuspec'
+    RegEx: '<version>0.0.1-beta</version>'
+    ValueToReplace: '<version>$(build.buildNumber)</version>'
+- task: NuGetCommand@2
+  displayName: 'NuGet pack'
+  inputs:
+    command: pack
+    packagesToPack: '$(Build.ArtifactStagingDirectory)/hertzconfig.nuspec'
+- task: NuGetCommand@2
+  displayName: 'NuGet push aucxis-choco-eprw'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'c972570a-a6c6-45a6-beff-5c91a8f920a5/cc0f6b33-7535-443f-80c0-f7da4a5c1721'

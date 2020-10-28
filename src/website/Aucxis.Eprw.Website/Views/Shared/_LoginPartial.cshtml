@@ -1,0 +1,38 @@
+﻿@using System.Security.Principal
+
+@{ 
+    var user = new UserModel();
+
+    if (User.Identity.IsAuthenticated)
+    {
+        user.ID = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+        user.FirstName = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value;
+        user.LastName = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value;
+    }
+
+}
+
+<ul class="navbar-nav login-menu">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icons-container">
+                    @user.FirstName.Substring(0, 1)@user.LastName.Substring(0, 1)
+                </span>&nbsp;
+                <span class="navbar-text login-text">
+                    @user.FirstName  @user.LastName
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-container" aria-labelledby="navbarDropdown">
+                <a class="nav-link" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Log out</a>
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Log in</a>
+        </li>
+    }
+</ul>

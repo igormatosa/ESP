@@ -1,0 +1,51 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow header">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/assets/Euro-Pool-System-Logo.png" height="65"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <partial name="_LoginPartial" />
+            @if (User.Identity.IsAuthenticated)
+            {
+        <ul class="navbar-nav navbar-right-margin">
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Reports
+                </a>
+                <div class="dropdown-menu dropdown-menu-container" aria-labelledby="navbarDropdown">
+                    <a class="nav-link" asp-area="" asp-controller="Report" asp-action="StockOverview">Stock overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Sscc label overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Order overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Washing overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Inventory overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Location overview</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Blue printouts </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Settings
+                </a>
+                <div class="dropdown-menu dropdown-menu-container" aria-labelledby="navbarDropdown">
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Empty types</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Reallocation matrix</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Alert types</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Alert categories</a>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Parameters</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Alerts</a>
+            </li>
+        </ul>
+            }
+            </div>
+    </div>
+</nav>

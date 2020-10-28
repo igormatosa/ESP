@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>aucxis-hertz-eprw-skw-washer-config</id>
+    <version>0.0.1-beta</version>
+    <description>Aucxis Hertz edge service config file</description>
+    <authors>Aucxis</authors>
+    <projectUrl>https://www.aucxis.com/nl/rfid/rfid-producten/hertz-rfid-middleware</projectUrl>
+    <tags>hertz edge configuration</tags>
+    <releaseNotes>
+      skw washer hertz config
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+    <file src="images\icon.png" target="images" />
+  </files>
+</package>

@@ -1,0 +1,49 @@
+﻿@model List<Aucxis.Eprw.Website.Models.ReportModel>
+
+@{
+    ViewData["Title"] = "Stock overview";
+}
+
+<div class="container-fluid header-text">
+    <h1>Stock Overview</h1>
+    <div class="row table-overview-container">
+        @(Html.DevExtreme().DataGrid()
+            .ID("gridContainer")
+            .Export(e => e.Enabled(true))
+            .OnExporting("exportingStockOverview")
+            .ShowBorders(true)
+            .FilterRow(f => f.Visible(true))
+            .HeaderFilter(f => f.Visible(true))
+            .GroupPanel(p => p.Visible(true))
+            .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+            .Height(600)
+            .DataSource(Model)
+            .Columns(c =>
+            {
+                c.Add().DataField("OrderNumber");
+                c.Add()
+                    .Caption("SSSC Number")
+                    .DataField("SSCCNumber")
+                    .ShowInColumnChooser(true);
+                c.Add().DataField("Timestamp");
+                c.Add().DataField("DeviceID");
+                c.Add().DataField("StatusValidate");
+                c.Add().DataField("Assets");
+            })
+            .Summary(s =>
+                s.TotalItems(totalItems =>
+                {
+                    totalItems.Add()
+                        .SummaryType(SummaryType.Count)
+                        .Column("OrderNumber");
+                })
+            )
+            .SearchPanel(searchPanel => searchPanel
+                .Visible(true)
+                .Width(240)
+                .Placeholder("Search...")
+            )
+        )
+    </div>
+</div>
+

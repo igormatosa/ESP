@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aucxis.RabbitMQMonitor", "src\tools\Aucxis.RabbitMQMonitor\Aucxis.RabbitMQMonitor\Aucxis.RabbitMQMonitor.csproj", "{0362DD7D-165F-478D-8FCC-1BFD85AEDA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aucxis.RabbitMQMonitor.InputOutputModule", "src\tools\Aucxis.RabbitMQMonitor\Aucxis.RabbitMQMonitor.InputOutputModule\Aucxis.RabbitMQMonitor.InputOutputModule.csproj", "{003F93DC-AC80-4C67-BA8D-D5C8E6B4756D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0362DD7D-165F-478D-8FCC-1BFD85AEDA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0362DD7D-165F-478D-8FCC-1BFD85AEDA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0362DD7D-165F-478D-8FCC-1BFD85AEDA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0362DD7D-165F-478D-8FCC-1BFD85AEDA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003F93DC-AC80-4C67-BA8D-D5C8E6B4756D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003F93DC-AC80-4C67-BA8D-D5C8E6B4756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003F93DC-AC80-4C67-BA8D-D5C8E6B4756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003F93DC-AC80-4C67-BA8D-D5C8E6B4756D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14DED206-AF2B-4A03-A03F-0A7F84C4753B}
+	EndGlobalSection
+EndGlobal
