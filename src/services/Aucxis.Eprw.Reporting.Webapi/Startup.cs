@@ -1,20 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Aucxis.Eprw.Reporting.Dataservice;
+using Microsoft.EntityFrameworkCore;
+using Aucxis.Eprw.Reporting.Dataservice.Entities;
+using Aucxis.Eprw.Reporting.Dataservice.Context;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Aucxis.Eprw.Reporting.Webapi
 {
@@ -44,6 +41,8 @@ namespace Aucxis.Eprw.Reporting.Webapi
                     Description = "ASP.NET Core Web API",
                 });
             });
+
+            ConfigureDataRepositories(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +55,13 @@ namespace Aucxis.Eprw.Reporting.Webapi
 
             app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reporting API V1");
+                c.SwaggerEndpoint("v1/swagger.json", "Reporting API V1");
+                c.DocExpansion(DocExpansion.None);
+                c.DocumentTitle = "Reporting API V1";
+                c.ShowExtensions();
             });
 
             app.UseHttpsRedirection();
@@ -73,5 +76,17 @@ namespace Aucxis.Eprw.Reporting.Webapi
                 endpoints.MapControllers();
             });
         }
+
+        private void ConfigureDataRepositories(IServiceCollection services)
+        {
+            var connectionString = Configuration.GetConnectionString("AppDB");
+
+
+            // Register repositories
+            EprwServiceConfiguration.ConfigureRepositories(services, connectionString);
+
+            // Register service
+            EprwServiceConfiguration.ConfigureServices(services);
+        }       
     }
 }

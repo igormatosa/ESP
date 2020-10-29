@@ -4,4 +4,33 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20201029092620_InitialMigration.cs" />
+    <Compile Remove="Migrations\20201029092620_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201029092803_TestEntityMigration.cs" />
+    <Compile Remove="Migrations\20201029092803_TestEntityMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201029092925_TestEntityMigration2.cs" />
+    <Compile Remove="Migrations\20201029092925_TestEntityMigration2.Designer.cs" />
+    <Compile Remove="Migrations\20201029104022_testmig.cs" />
+    <Compile Remove="Migrations\20201029104022_testmig.Designer.cs" />
+    <Compile Remove="Migrations\20201029110515_InitialMigration.cs" />
+    <Compile Remove="Migrations\20201029110515_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\Validation\" />
+  </ItemGroup>
+
 </Project>

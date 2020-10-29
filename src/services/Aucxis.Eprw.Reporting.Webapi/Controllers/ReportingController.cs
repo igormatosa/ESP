@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aucxis.Eprw.Reporting.Dataservice.Models;
+using Aucxis.Eprw.Reporting.Dataservice.Services;
 using Aucxis.Eprw.Reporting.Webapi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +12,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aucxis.Eprw.Reporting.Webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/reporting")]
     [ApiController]
     public class ReportingController : ControllerBase
     {
+        private readonly TestService _testService;
 
-        [HttpGet]
+        public ReportingController(TestService testService)
+        {
+            _testService = testService;
+        }
+
+       [HttpGet]
+        [Route("gettest")]
+        public async Task<List<TestModel>> GetTest()
+        {
+            var testModels = await _testService.GetAllAsync();
+            return testModels;
+        }
+
+            [HttpGet]
         public List<ReportModel> Get()
         {
             List<ReportModel> reportData = new List<ReportModel>
